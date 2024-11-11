@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDb from "./utils/db.js";
+import userRoutes from "./routes/user.route.js";
+import compnayRoutes from "./routes/compnay.route.js";
 dotenv.config({});
 const app = express();
 
@@ -21,6 +23,11 @@ const crosOptions = {
   Credentials: true,
 };
 app.use(cors(crosOptions));
+
+//user apis
+
+app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/company", compnayRoutes);
 
 app.get("/testing", (req, res) => {
   return res.status(200).json({
